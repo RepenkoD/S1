@@ -23,7 +23,7 @@ def load_audio():
 
 @st.cache(allow_output_mutation=True)
 def model_loading():
-    return EncoderClassifier.from_hparams(source="speechbrain/lang-id-voxlingua107-ecapa", savedir="tmp")
+    return EncoderClassifier.from_hparams(source="speechbrain//lang-id-voxlingua107-ecapa", savedir="tmp")
 
 language_id = model_loading()
 
