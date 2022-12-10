@@ -3,6 +3,8 @@ import streamlit as st
 import torchaudio
 from speechbrain.pretrained import EncoderClassifier
 
+
+import bokeh
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
