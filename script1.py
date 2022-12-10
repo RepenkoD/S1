@@ -18,8 +18,8 @@ def load_audio():
         #st.write(audio_data)
         #Вывод аудиоплеера
         st.audio(audio_data)
-        #return audio_data
-        return io.BytesIO(audio_data)
+        return audio_data
+        №return io.BytesIO(audio_data)
 
 @st.cache(allow_output_mutation=True)
 def model_loading():
