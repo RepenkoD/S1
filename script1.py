@@ -18,12 +18,14 @@ def load_audio():
         #st.write(audio_data)
         #Вывод аудиоплеера
         st.audio(audio_data)
-        return audio_data
-        #return io.BytesIO(audio_data)
+        # return io.BytesIO(audio_data)
+        with open("temp.wav","wb") as f:
+            f.write(uploaded_file.getbuffer())
+
 
 @st.cache(allow_output_mutation=True)
 def model_loading():
-    return EncoderClassifier.from_hparams(source="speechbrain/lang-id-voxlingua107-ecapa", savedir="tmp")
+    return EncoderClassifier.from_hparams(source="speechbrain/lang-id-voxlingua107-ecapa", savedir="tmp")    
 
 language_id = model_loading()
 
@@ -33,6 +35,6 @@ result = st.button('Распознать аудиофайл')
 #Если кнопка нажата, то запускаем распознавание
 
 if result:
-    signal = language_id.load_audio(audio_data)
+    signal = language_id.load_audio("temp.wav")
     prediction =  language_id.classify_batch(signal)
-    print(prediction[3][0] + ' with probability' + f" {prediction[1].exp().item()}")
+    st.write(prediction[3][0] + ' with probability' + f" {prediction[1].exp().item()}")
